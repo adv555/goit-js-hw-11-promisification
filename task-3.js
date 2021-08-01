@@ -29,16 +29,18 @@ const makeTransaction = transaction => {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       const canProcess = Math.random() > 0.3;
+      const id = transaction.id;
+      const time = delay;
 
       if (canProcess) {
-        resolve(transaction.id, delay);
+        resolve({ id, time });
       }
-      reject(transaction.id);
+      reject(id);
     }, delay);
   });
 };
 
-const logSuccess = (id, time) => {
+const logSuccess = ({ id, time }) => {
   console.log(`Transaction ${id} processed in ${time}ms`);
 };
 
